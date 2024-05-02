@@ -35,6 +35,6 @@ df['综合得分'] = df['rank_point'] * weights['收益得分'] + df['sharpe_rat
 df['排名'] = df['综合得分'].rank(ascending=False)
 
 # 输出排名结果
-print(df[['Code', 'Name', '综合得分']].to_string(index=False))
-# print(df[['综合得分']].to_string(index=False))
+# print(df[['Code', 'Name', '综合得分']].to_string(index=False))
+print(df[['综合得分']].to_string(index=False))
 
