@@ -23,19 +23,21 @@ df['three_month_rank_rank'] = df['three_month_rank'].rank(ascending=True)
 df['rank_point'] = df['one_year_rank_rank'] + df['six_month_rank_rank'] + df['three_month_rank_rank'] + df['one_year_return_rank'] + df['six_month_return_rank'] + df['three_month_return_rank']
 
 # sharpe_ratio 从高到低的顺序进行排名
-df['sharpe_ratio_rank'] = df['sharpe_ratio'].rank(ascending=True, method='first')
+# df['sharpe_ratio_rank'] = df['sharpe_ratio'].rank(ascending=True, method='first')
 
 # 设置权重
-weights = {'收益得分': 0.9, '风险得分': 0.1}
+weights = {'收益得分': 1, '风险得分': 0.1}
 
 # 计算综合得分
-df['综合得分'] = df['rank_point'] * weights['收益得分'] + df['sharpe_ratio_rank'] * weights['风险得分']
+# df['综合得分'] = df['rank_point'] * weights['收益得分'] + df['sharpe_ratio_rank'] * weights['风险得分']
+df['综合得分'] = df['rank_point'] * weights['收益得分'] 
+
 
 # 根据综合得分进行排名
 df['排名'] = df['综合得分'].rank(ascending=False)
 
 # 输出排名结果
-print(df[['Code', 'Name', '综合得分']].to_string(index=False))
-# print(df[['综合得分']].to_string(index=False))
+# print(df[['Code', 'Name', '综合得分']].to_string(index=False))
+print(df[['综合得分']].to_string(index=False))
 
 # print(df[['Name','sharpe_ratio_rank']].to_string(index=False))
