@@ -19,8 +19,8 @@ data['total_rank_number'] = data[[f'{col}_rank' for col in ranking_columns]].app
 data['total_rank_number'] = data['total_rank_number'].astype(int)
 
 # 打印 Fund Name, Fund Code 和 total_rank_number
-print(data[['Fund Name', 'Fund Code', 'total_rank_number']])
+# print(data[['Fund Name', 'Fund Code', 'total_rank_number']])
 
 # 打印 total_rank_number 列，仅显示数字
-# for value in data['total_rank_number']:
-#     print(value)
+for value in data['total_rank_number']:
+    print(value)
