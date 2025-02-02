@@ -10,7 +10,7 @@ ranking_columns = ['one_month_return', 'three_month_return', 'six_month_return',
 # 为每列添加排名
 for col in ranking_columns:
     rank_col = f'{col}_rank'
-    data[rank_col] = data[col].rank(ascending=False, method='min')
+    data[rank_col] = data[col].rank(ascending=False, method='first')
 
 # 使用 apply 计算总和
 data['total_rank_number'] = data[[f'{col}_rank' for col in ranking_columns]].apply(lambda row: row.sum(), axis=1)
@@ -19,7 +19,7 @@ data['total_rank_number'] = data[[f'{col}_rank' for col in ranking_columns]].app
 data['total_rank_number'] = data['total_rank_number'].astype(int)
 
 # 打印 Fund Name, Fund Code 和 total_rank_number
-# print(data[['Fund Name', 'Fund Code', 'total_rank_number']])
+print(data[['Fund Name', 'Fund Code', 'total_rank_number']])
 
 # 打印 total_rank_number 列，仅显示数字
 for value in data['total_rank_number']:
